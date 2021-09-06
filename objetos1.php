@@ -3,11 +3,13 @@
   private $documento;
   private $nombre;
   private $ficha;
+  private $sissalud;
 //setters y getters
  function __construct($documento,$nombre,$ficha){
     $this->documento=$documento;
     $this->nombre=$nombre;
     $this->ficha=$ficha;
+   // $sissalud=new SistemaSalud();
  }
 //reemplazar los 3 setters por uno
 function setter($atributo,$valor){
