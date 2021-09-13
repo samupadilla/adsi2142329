@@ -12,13 +12,11 @@
     <div class="div">
     <?php
 
-
     class Bibloteca
     {
         private $Libro;
         private $revista;
     }
-
 
     class Libro extends Bibloteca {
 
@@ -47,13 +45,10 @@
             print $this->editorial;
         }
 
-
         function mensaje()
         {
            echo "Nombre del Libro: {$this->Libro}. <br><br> Editorial: {$this->editorial}";
         }
-
-
         
     }   
 

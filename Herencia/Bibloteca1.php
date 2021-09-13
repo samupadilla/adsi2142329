@@ -11,7 +11,7 @@
 
     <section>
     <?php
-
+include ('produccion.php');
 use Bibloteca as GlobalBibloteca;
 
 class Material{
@@ -125,10 +125,9 @@ class Material{
     
     
     
-    class Libro extends Material{
+    class Libro extends Material implements Produccion{
 
         private $editorial;
-
 
         function __construct($tipoMaterial,$codigo,$autor,$titulo,$año,$editorial)
         {
@@ -139,8 +138,18 @@ class Material{
             // $this->autor=$autor;
             // $this->titulo=$titulo;
             // $this->año=$año;            
-
         }
+
+        function publicar(){
+            if ($this->año>2010) {
+                echo 'Libro candidato a ser digitalizado';
+            } else {
+                echo 'Por antiguedad NO digitalizar';
+            }
+            
+        }
+
+        function conservar(){  }
 
         function setter($atributo,$valor){
             $this->$atributo=$valor;
@@ -234,7 +243,7 @@ class Material{
 
 
 
-    $obj = new Libro("Libro",123456,"Luis Gomez","Las Aventuras",2003,"anonimo");
+    $obj = new Libro("Libro",123456,"Luis Gomez","Las Aventuras",2015,"anonimo");
     //modificar directamente el atributo
     //si es private no se puede
     //$obj->editorial="norma";    
@@ -261,6 +270,8 @@ class Material{
     echo $obj->getter("año").'<br><br>';
     echo "Editorial: ";
     echo $obj->getter("editorial").'<br><br>';
+    echo '<br>000000000000000000000000000000<br>';
+    echo $obj->publicar();
 
 
 
@@ -316,6 +327,27 @@ $obj1 = new Libro("Libro",123457,"Gabo","100 años de soledad",1978,"planeta");
 $biblio->adicionarLibro($obj1);
 $biblio->verLibros();
 
+class Revista extends Material implements Produccion{
+    public $volumen;
+    function __construct($tipoMaterial,$codigo,$autor,$titulo,$año,$volumen)
+    {
+        parent:: __construct($tipoMaterial,$codigo,$autor,$titulo,$año);
+        $this->volumen=$volumen;    
+    }
+    function publicar(){
+        if ($this->volumen>10) {
+            echo 'se digitaliza';
+        } else {
+            echo 'no se digitaliza';
+        }
+        
+    }
+    function conservar()
+    {
+        
+    }
+
+}
 
 
     ?>
